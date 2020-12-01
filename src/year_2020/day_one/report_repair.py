@@ -31,11 +31,13 @@ def main():
         data = [int(value.strip("\n")) for value in f.readlines()]
 
     pair_2020 = next(get_2020_groups(lst=data))
-    print(f"Multiplying the pair which sum equals to 2020 {pair_2020} gives: {multiply(pair_2020)}")
+    if pair_2020:
+        print(f"Multiplying the pair which sum equals to 2020 {pair_2020} gives: {multiply(pair_2020)}")
 
     triplet_2020 = next(get_2020_groups(lst=data, group_size=3))
-    print(f"Multiplying the triplet which sum equals to 2020 {triplet_2020} gives: {multiply(triplet_2020)}")
-
+    if triplet_2020:
+        print(f"Multiplying the triplet which sum equals to 2020 {triplet_2020} gives: {multiply(triplet_2020)}")
+        
     return True
 
 
