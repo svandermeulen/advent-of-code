@@ -16,9 +16,9 @@ def multiply(sequence: tuple) -> int:
     return math.prod(sequence)
 
 
-def get_2020_groups(lst: List[int], group_size: int = 2) -> Tuple:
+def get_2020_groups(lst: List[int], group_size: int = 2, group_sum: int = 2020) -> Tuple:
     for pair in combinations(lst, group_size):
-        if sum(pair) == 2020:
+        if sum(pair) == group_sum:
             yield pair
     return ()
 
@@ -30,13 +30,13 @@ def main():
     with open(path_file, "r") as f:
         data = [int(value.strip("\n")) for value in f.readlines()]
 
-    pair_2020 = next(get_2020_groups(lst=data))
-    if pair_2020:
-        print(f"Multiplying the pair which sum equals to 2020 {pair_2020} gives: {multiply(pair_2020)}")
-
-    triplet_2020 = next(get_2020_groups(lst=data, group_size=3))
-    if triplet_2020:
-        print(f"Multiplying the triplet which sum equals to 2020 {triplet_2020} gives: {multiply(triplet_2020)}")
+    for group_size in [2, 3]:
+        group_2020 = next(get_2020_groups(lst=data, group_size=group_size))
+        if group_2020:
+            print(
+                f"Multiplying the group of size {group_size} which sum equals to 2020 {group_2020} gives: "
+                f"{multiply(group_2020)}"
+            )
 
     return True
 
