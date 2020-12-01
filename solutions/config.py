@@ -7,12 +7,11 @@ Date: 01/12/2020
 import os
 
 
-class Config():
+class Config:
 
-    def __init__(self):
-
+    def __init__(self, year: int = 2020):
         self.path_home = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        self.path_data = os.path.join(self.path_home, "data", "2020")
+        self.path_data = os.path.join(self.path_home, "data", f"{year}")
 
 
 def main():

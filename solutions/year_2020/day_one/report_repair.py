@@ -9,7 +9,7 @@ import os
 from itertools import combinations
 from typing import List, Tuple
 
-from src.year_2020.config import Config
+from solutions.config import Config
 
 
 def multiply(sequence: tuple) -> int:
@@ -37,7 +37,7 @@ def main():
     triplet_2020 = next(get_2020_groups(lst=data, group_size=3))
     if triplet_2020:
         print(f"Multiplying the triplet which sum equals to 2020 {triplet_2020} gives: {multiply(triplet_2020)}")
-        
+
     return True
 
 
