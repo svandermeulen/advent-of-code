@@ -3,7 +3,7 @@
 Written by: sme30393
 Date: 07/12/2020
 """
-
+import math
 import os
 import re
 from copy import deepcopy
@@ -34,7 +34,7 @@ def parse_bag(bag: str) -> (str, int):
     return bag_renamed, bag_count
 
 
-def find_bag_type(data: dict, bag_type: str = "shiny gold bag", bags_gold: list = None) -> list:
+def find_gold_carrying_bags(data: dict, bag_type: str = "shiny gold bag", bags_gold: list = None) -> list:
 
     bags_gold = bags_gold if bags_gold is not None else []
 
@@ -43,74 +43,87 @@ def find_bag_type(data: dict, bag_type: str = "shiny gold bag", bags_gold: list 
     if bags_containing_type:
         bags_gold.extend(bags_containing_type)
         for bag in bags_containing_type:
-            bags_gold = find_bag_type(data=data, bag_type=bag.rstrip("s"), bags_gold=bags_gold)
+            bags_gold = find_gold_carrying_bags(data=data, bag_type=bag.rstrip("s"), bags_gold=bags_gold)
 
     return bags_gold
 
 
-def unpack(rules: dict, inner_bags: str, bags_unpacked: list = None) -> list:
+def count_bags_in_gold_bag(data: dict, bag_type: str = "shiny gold bags", bags_count: list = None) -> list:
+    bags_count = bags_count if bags_count is not None else []
 
-    bags_unpacked = bags_unpacked if bags_unpacked is not None else []
-
-    for bag in inner_bags:
+    bags_type = data[bag_type]
+    for bag in bags_type:
 
         if bag == "no other bags":
-            return bags_unpacked
+            return bags_count
 
         bag, bag_count = parse_bag(bag=bag)
 
-        if bag in bags_unpacked:
-            continue
+        if data[bag] == ["no other bags"]:
+            bags_count.append(f"+{bag_count}")
+        else:
+            bags_count.append(str(bag_count))
+        bags_count = count_bags_in_gold_bag(data=data, bag_type=bag, bags_count=bags_count)
 
-        if bag in rules:
-            bags_unpacked.append(bag)
-
-            if "shiny gold bags" in bags_unpacked:
-                return bags_unpacked
-
-            if rules[bag] == ["no other bags"]:
-                return bags_unpacked
-
-            bags_unpacked = unpack(rules=rules, inner_bags=rules[bag], bags_unpacked=bags_unpacked)
-
-    return bags_unpacked
+    return bags_count
 
 
-def unpack_bag_rules(rules: dict) -> dict:
+def parse_bag_counts(bag_counts: List[str]) -> str:
 
-    rules_unpacked = deepcopy(rules)
+    calculation = ""
+    summation_count = 0
+    for bag_count in bag_counts:
+        if "+" not in bag_count and summation_count == 0 and not calculation:
+            calculation += bag_count + "+" + bag_count
+            summation_count = 0
+        elif "+" not in bag_count and summation_count == 0 and calculation:
+            calculation += "*" + bag_count + "+" + bag_count
 
-    for outermost, underlying in rules.items():
-        rules_unpacked[outermost] = unpack(rules=rules, inner_bags=underlying)
+        elif "+" in bag_count and summation_count != 0:
+            calculation += bag_count
+        elif "+" not in bag_count and summation_count > 0:
+            calculation += ")+" + bag_count + "+" + bag_count
+            summation_count = 0
+        else:
+            calculation += "*(" + bag_count.lstrip("+")
+            summation_count += 1
 
-    return rules_unpacked
-
-
-def compute_part_one(data: list) -> int:
-
-    rules_unpacked = parse_data(data=data)
-
-    bags_carrying_shiny_gold = [key for key, val in rules_unpacked.items() if "shiny gold bags" in val]
-
-    return len(bags_carrying_shiny_gold)
+    return calculation.strip("+") + ")"
 
 
 def main():
 
     config = Config()
+
+    # PART ONE
     path_file = os.path.join(config.path_data, "day_7", "bag_color_rules_test.txt")
     data_test = read_txt_file(path_file=path_file)
-
     data_test_parsed = parse_data(data=data_test)
-    bags_carrying_shiny_gold = find_bag_type(data=data_test_parsed, bag_type="shiny gold bag")
+    bags_carrying_shiny_gold = find_gold_carrying_bags(data=data_test_parsed, bag_type="shiny gold bag")
     n_bags_carrying_shiny_gold = len(bags_carrying_shiny_gold)
     assert 4 == n_bags_carrying_shiny_gold
 
     path_file = os.path.join(config.path_data, "day_7", "bag_color_rules.txt")
     data = read_txt_file(path_file=path_file)
     data_parsed = parse_data(data=data)
-    n_bags_carrying_shiny_gold = find_bag_type(data=data_parsed)
-    # assert 4 == n_bags_carrying_shiny_gold
+    bags_carrying_shiny_gold = find_gold_carrying_bags(data=data_parsed)
+    assert 128 == len(bags_carrying_shiny_gold)
+
+    # PART TWO
+    bag_counts = count_bags_in_gold_bag(data=data_test_parsed)
+    bag_counts_parsed = parse_bag_counts(bag_counts=bag_counts)
+    total_bags = eval(bag_counts_parsed)
+    assert 32 == total_bags
+
+    path_file = os.path.join(config.path_data, "day_7", "bag_color_rules_test_part_two.txt")
+    data = read_txt_file(path_file=path_file)
+    data_parsed = parse_data(data=data)
+    bag_counts = count_bags_in_gold_bag(data=data_parsed)
+    bag_counts_parsed = parse_bag_counts(bag_counts=bag_counts)
+    total_bags = eval(bag_counts_parsed)
+    assert 126 == total_bags
+
+    print(f"The total number of bags within a shiny gold bag equals: {total_bags}")
 
     return True
 
