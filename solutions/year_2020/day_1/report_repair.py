@@ -25,7 +25,7 @@ def get_2020_groups(lst: List[int], group_size: int = 2, group_sum: int = 2020) 
 
 def main():
     config = Config()
-    path_file = os.path.join(config.path_data, "day_one", "expense_report.txt")
+    path_file = os.path.join(config.path_data, "day_1", "expense_report.txt")
 
     with open(path_file, "r") as f:
         data = [int(value.strip("\n")) for value in f.readlines()]

@@ -61,7 +61,7 @@ def is_valid_rule_two(character_indices_policy: List[int], character: str, passw
 
 def main():
     config = Config()
-    path_file = os.path.join(config.path_data, "day_two", "password_policies.txt")
+    path_file = os.path.join(config.path_data, "day_2", "password_policies.txt")
 
     with open(path_file, "r") as f:
         data = [value.strip("\n") for value in f.readlines()]

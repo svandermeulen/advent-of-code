@@ -207,9 +207,9 @@ def validate_passport_two(passport: dict) -> bool:
 
 def main():
     config = Config()
-    path_file = os.path.join(config.path_data, "day_four", "passport_batch_files.txt")
-    path_file_invalid = os.path.join(config.path_data, "day_four", "passport_batch_files_invalid_test.txt")
-    path_file_valid = os.path.join(config.path_data, "day_four", "passport_batch_files_valid_test.txt")
+    path_file = os.path.join(config.path_data, "day_4", "passport_batch_files.txt")
+    path_file_invalid = os.path.join(config.path_data, "day_4", "passport_batch_files_invalid_test.txt")
+    path_file_valid = os.path.join(config.path_data, "day_4", "passport_batch_files_valid_test.txt")
 
     with open(path_file, "r") as f:
         data = [value.strip("\n") for value in f.readlines()]

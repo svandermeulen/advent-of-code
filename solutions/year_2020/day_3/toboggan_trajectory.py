@@ -39,7 +39,7 @@ def count_encountered_trees(tree_data: list, slope: tuple) -> int:
 
 def main():
     config = Config()
-    path_test_file = os.path.join(config.path_data, "day_three", "tree_map_test.txt")
+    path_test_file = os.path.join(config.path_data, "day_3", "tree_map_test.txt")
 
     slope = (1, 3)
 
@@ -50,7 +50,7 @@ def main():
 
     assert tree_count == 7, f"The number of encountered trees in the test set != 7 but {tree_count}"
 
-    path_file = os.path.join(config.path_data, "day_three", "tree_map.txt")
+    path_file = os.path.join(config.path_data, "day_3", "tree_map.txt")
     with open(path_file, "r") as f:
         data = [value.strip("\n") for value in f.readlines()]
 
