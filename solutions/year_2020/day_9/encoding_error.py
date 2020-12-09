@@ -13,7 +13,6 @@ from solutions.year_2020.utils.file_manager import read_txt_file
 
 
 def detect_encoding_error(sequence: list, preamble: int) -> int:
-
     for i, digit in zip(range(preamble, len(sequence)), sequence[preamble:]):
         previous_numbers = sequence[i - preamble:i]
         possible_sums = [sum(pair) for pair in combinations(previous_numbers, 2)]
@@ -24,7 +23,6 @@ def detect_encoding_error(sequence: list, preamble: int) -> int:
 
 
 def get_contiguous_pairs(sequence: list, pair_size: int) -> list:
-
     """"
     DOCTEST
     >>> get_contiguous_pairs(sequence=[1, 2, 3, 4], pair_size=2)
@@ -33,11 +31,10 @@ def get_contiguous_pairs(sequence: list, pair_size: int) -> list:
     [[1, 2, 3], [2, 3, 4]]
     """
 
-    return [sequence[i:i+pair_size] for i in range(len(sequence) - (pair_size - 1))]
+    return [sequence[i:i + pair_size] for i in range(len(sequence) - (pair_size - 1))]
 
 
 def detect_encrption_weakness(sequence: list, encoding_error: int) -> int:
-
     idx_encoding_error, = [i for i, value in enumerate(sequence) if value == encoding_error]
     for pair_size in range(2, idx_encoding_error):
         for pair in get_contiguous_pairs(sequence=sequence, pair_size=pair_size):
@@ -48,7 +45,6 @@ def detect_encrption_weakness(sequence: list, encoding_error: int) -> int:
 
 
 def main():
-
     config = Config()
 
     # PART ONE
