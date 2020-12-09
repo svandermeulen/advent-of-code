@@ -34,7 +34,7 @@ def get_contiguous_pairs(sequence: list, pair_size: int) -> list:
     return [sequence[i:i + pair_size] for i in range(len(sequence) - (pair_size - 1))]
 
 
-def detect_encrption_weakness(sequence: list, encoding_error: int) -> int:
+def detect_encryption_weakness(sequence: list, encoding_error: int) -> int:
     idx_encoding_error, = [i for i, value in enumerate(sequence) if value == encoding_error]
     for pair_size in range(2, idx_encoding_error):
         for pair in get_contiguous_pairs(sequence=sequence, pair_size=pair_size):
@@ -66,10 +66,10 @@ def main():
     # PART TWO
 
     # Test
-    encoding_weakness_test = detect_encrption_weakness(sequence=data_test, encoding_error=encoding_error_test)
+    encoding_weakness_test = detect_encryption_weakness(sequence=data_test, encoding_error=encoding_error_test)
     assert 62 == encoding_weakness_test
 
-    encoding_weakness = detect_encrption_weakness(sequence=data, encoding_error=encoding_error)
+    encoding_weakness = detect_encryption_weakness(sequence=data, encoding_error=encoding_error)
     print(
         f"The sum of the min and max of the contiguous sequence of numbers, "
         f"which sum equals the encoding error equals: {encoding_weakness}"
