@@ -161,8 +161,8 @@ def main():
     program = parse_program(path_file)
     memory = execute_program_v2(program=program)
     memory_sum = get_memory_sum(memory)
-    print(f"The sum of memory equals: {memory_sum}")
-    # assert 208 == sum(list(memory.values()))
+    print(f"The sum of memory for part 2 equals: {memory_sum}")
+    assert 4275496544925 == sum(list(memory.values()))
 
     return True
 
