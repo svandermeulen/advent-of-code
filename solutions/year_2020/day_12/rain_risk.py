@@ -113,9 +113,8 @@ def action_decoder_two(waypoint: list, action: str, value: int) -> list:
     return waypoint
 
 
-def execute_actions_two(actions: list, location_init: list, waypoint_init: list, direction_init: str) -> list:
+def execute_actions_two(actions: list, location_init: list, waypoint_init: list) -> list:
     location = location_init
-    direction = direction_init
     waypoint = waypoint_init
     for action in actions:
         action, value = action[0], action[1]
@@ -159,13 +158,11 @@ def main():
     # PART TWO
 
     # Test
-    coordinate_final = execute_actions_two(actions=evasive_actions_test, location_init=[0, 0], waypoint_init=[10, 1],
-                                           direction_init="E")
+    coordinate_final = execute_actions_two(actions=evasive_actions_test, location_init=[0, 0], waypoint_init=[10, 1])
     manhattan_distance = get_manhattan_distance(location=coordinate_final)
     assert manhattan_distance == 286
 
-    coordinate_final = execute_actions_two(actions=evasive_actions, location_init=[0, 0], waypoint_init=[10, 1],
-                                           direction_init="E")
+    coordinate_final = execute_actions_two(actions=evasive_actions, location_init=[0, 0], waypoint_init=[10, 1])
     manhattan_distance = get_manhattan_distance(location=coordinate_final)
     print(f"The manhattan distance of the final coordinate equals: {manhattan_distance}")
     assert 38693 == manhattan_distance
