@@ -3,7 +3,6 @@
 Written by: sme30393
 Date: 07/12/2020
 """
-import math
 import os
 import re
 
