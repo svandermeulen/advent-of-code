@@ -120,9 +120,12 @@ def main():
     t = get_t(buslines=buslines_test)
     assert 779210 == t
 
+    # Real deal
+
     timestamp, buslines = parse_notes_two(path_file=path_data)
     t = get_t(buslines=buslines)
     print(f"t equals: {t} minutes")
+    assert 600691418730595 == t
     return True
 
 
