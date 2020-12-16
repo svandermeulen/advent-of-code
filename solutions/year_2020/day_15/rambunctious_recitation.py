@@ -3,7 +3,6 @@
 Written by: sme30393
 Date: 16/12/2020
 """
-import numpy as np
 
 from collections import defaultdict
 
