@@ -3,67 +3,49 @@
 Written by: sme30393
 Date: 16/12/2020
 """
-
 import numpy as np
-import matplotlib.pyplot as plt
 
+from collections import defaultdict
 
 from solutions.year_2020.utils.profiler import profile
 
 
-def get_new_number(turn: int, last_number_occourences: np.ndarray):
-    last_two_number_turns = turn - last_number_occourences[-2:]
-    return np.subtract(*last_two_number_turns)
+def take_turns(starting_number_list: list, turn_end: int) -> int:
+    number_dict = defaultdict(list)
 
+    for i, n in enumerate(starting_number_list):
+        number_dict[n] = [i]
 
-def take_turns(starting_number_list: list, turn_end: int) -> np.ndarray:
-
-    numbers_spoken = np.ones(turn_end) * -1
-    numbers_spoken[0:len(starting_number_list)] = starting_number_list
     turn = len(starting_number_list)
+    last_number = starting_number_list[-1]
     while turn < turn_end:
 
-        last_number = numbers_spoken[turn - 1]
-
-        last_number_occourences = np.where(numbers_spoken == last_number)[0]
-        if len(last_number_occourences) < 2:
-            numbers_spoken[turn] = 0
-        elif len(last_number_occourences) >= 2:
-            numbers_spoken[turn] = get_new_number(turn=turn, last_number_occourences=last_number_occourences)
+        if len(number_dict[last_number]) < 2:
+            last_number = 0
+            number_dict[last_number].append(turn)
+        elif len(number_dict[last_number]) >= 2:
+            number_dict[last_number] = number_dict[last_number][-2:]
+            last_number = (turn - number_dict[last_number][-2]) - (turn - number_dict[last_number][-1])
+            number_dict[last_number].append(turn)
         else:
-            raise ValueError("Last number has not been counted before.")
+            raise ValueError("Unknown number")
 
         turn += 1
 
-    return numbers_spoken
+    return last_number
 
 
+@profile
 def play_game(numbers: str, turn_end: int) -> int:
-
     starting_number_list = [int(n) for n in numbers.split(",")]
-    numbers_spoken = take_turns(starting_number_list=starting_number_list, turn_end=turn_end)
-    print(f"The {turn_end}th number spoken is {numbers_spoken[-1]}")
+    last_number = take_turns(starting_number_list=starting_number_list, turn_end=turn_end)
 
-    plot_number_sequence(number_seq=numbers_spoken)
+    print(f"The {turn_end}th number spoken is {last_number}")
 
-    return numbers_spoken[-1]
-
-
-def plot_number_sequence(number_seq: np.ndarray) -> bool:
-
-    plt.plot(number_seq)
-    plt.plot(range(0, len(number_seq)), "-r")
-    plt.show()
-
-    derivative = np.diff(number_seq)
-    plt.plot(derivative)
-    plt.show()
-
-    return True
+    return last_number
 
 
 def main():
-
     # PART ONE
 
     turn_end = 2020
@@ -87,21 +69,11 @@ def main():
     assert 959 == number_end
 
     # PART TWO
-    puzzle_input = "3,2,1"
-    turn_end = 100
-    number_end = play_game(numbers=puzzle_input, turn_end=turn_end)
 
-    turn_end = 1000
+    # Real deal
+    turn_end = 30000000
     number_end = play_game(numbers=puzzle_input, turn_end=turn_end)
-
-    turn_end = 10000
-    number_end = play_game(numbers=puzzle_input, turn_end=turn_end)
-
-    turn_end = 100000
-    number_end = play_game(numbers=puzzle_input, turn_end=turn_end)
-
-    turn_end = 1000000
-    number_end = play_game(numbers=puzzle_input, turn_end=turn_end)
+    assert 116590 == number_end
 
     return True
 
