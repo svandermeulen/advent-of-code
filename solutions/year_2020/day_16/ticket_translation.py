@@ -3,11 +3,12 @@
 Written by: sme30393
 Date: 16/12/2020
 """
+import numpy as np
 import os
+
 from math import prod
 from typing import Tuple
 
-import numpy as np
 
 from solutions.config import Config
 from solutions.year_2020.utils.file_manager import read_txt_file
