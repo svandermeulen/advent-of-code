@@ -29,8 +29,8 @@ def get_seat_id(row: int, column: int) -> int:
 
 
 def main():
-    config = Config()
-    path_file = os.path.join(config.path_data, "day_5", "boarding_passes.txt")
+    config = Config(day=5)
+    path_file = os.path.join(config.path_data, "boarding_passes.txt")
 
     with open(path_file, "r") as f:
         boarding_passes = [value.strip("\n") for value in f.readlines()]

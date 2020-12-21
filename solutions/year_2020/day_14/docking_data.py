@@ -131,18 +131,18 @@ def get_memory_sum(memory: dict) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=14)
 
     # PART ONE
 
     # Test
-    path_file_test = os.path.join(config.path_data, "day_14", "program_test.txt")
+    path_file_test = os.path.join(config.path_data, "program_test.txt")
     program = parse_program(path_file_test)
     memory = execute_program(program=program)
     assert 165 == get_memory_sum(memory=memory)
 
     # Real deal
-    path_file = os.path.join(config.path_data, "day_14", "program.txt")
+    path_file = os.path.join(config.path_data, "program.txt")
     program = parse_program(path_file)
     memory = execute_program(program=program)
     memory_sum = get_memory_sum(memory=memory)
@@ -152,7 +152,7 @@ def main():
     # PART TWO
 
     # Test
-    path_file_test = os.path.join(config.path_data, "day_14", "program_test_two.txt")
+    path_file_test = os.path.join(config.path_data, "program_test_two.txt")
     program = parse_program(path_file_test)
     memory = execute_program_v2(program=program)
     assert 208 == get_memory_sum(memory=memory)

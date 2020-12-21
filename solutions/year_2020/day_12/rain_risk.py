@@ -136,19 +136,19 @@ def get_manhattan_distance(location: list) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=12)
 
     # PART ONE
 
     # Test one
-    path_data = os.path.join(config.path_data, "day_12", "evasive_actions_test.txt")
+    path_data = os.path.join(config.path_data, "evasive_actions_test.txt")
     evasive_actions_test = parse_puzzle_input(path_data=path_data)
     coordinate_final = execute_actions(actions=evasive_actions_test, location_init=[0, 0], direction_init="E")
     manhattan_distance = get_manhattan_distance(location=coordinate_final)
     assert 25 == manhattan_distance
 
     # Real deal
-    path_data = os.path.join(config.path_data, "day_12", "evasive_actions.txt")
+    path_data = os.path.join(config.path_data, "evasive_actions.txt")
     evasive_actions = parse_puzzle_input(path_data=path_data)
     coordinate_final = execute_actions(actions=evasive_actions, location_init=[0, 0], direction_init="E")
     manhattan_distance = get_manhattan_distance(location=coordinate_final)

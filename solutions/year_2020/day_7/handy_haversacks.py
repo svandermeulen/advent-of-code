@@ -64,17 +64,17 @@ def unpack(rules: dict, inner_bags: str, bags_unpacked: list = None) -> list:
 
 
 def main():
-    config = Config()
+    config = Config(day=7)
 
     # PART ONE
-    path_file = os.path.join(config.path_data, "day_7", "bag_color_rules_test.txt")
+    path_file = os.path.join(config.path_data, "bag_color_rules_test.txt")
     data_test = read_txt_file(path_file=path_file)
     data_test_parsed = parse_rules(data=data_test)
     bags_carrying_shiny_gold = find_gold_carrying_bags(data=data_test_parsed, bag_type="shiny gold bag")
     n_bags_carrying_shiny_gold = len(bags_carrying_shiny_gold)
     assert 4 == n_bags_carrying_shiny_gold
 
-    path_file = os.path.join(config.path_data, "day_7", "bag_color_rules.txt")
+    path_file = os.path.join(config.path_data, "bag_color_rules.txt")
     data = read_txt_file(path_file=path_file)
     data_parsed = parse_rules(data=data)
     bags_carrying_shiny_gold = find_gold_carrying_bags(data=data_parsed)
@@ -84,7 +84,7 @@ def main():
     bags_unpacked = unpack(rules=data_test_parsed, inner_bags=data_test_parsed["shiny gold bags"])
     assert 32 == len(bags_unpacked)
 
-    path_file = os.path.join(config.path_data, "day_7", "bag_color_rules_test_part_two.txt")
+    path_file = os.path.join(config.path_data, "bag_color_rules_test_part_two.txt")
     data_test_two = read_txt_file(path_file=path_file)
     data_test_two_parsed = parse_rules(data=data_test_two)
     bags_unpacked = unpack(rules=data_test_two_parsed, inner_bags=data_test_two_parsed["shiny gold bags"])

@@ -45,12 +45,12 @@ def compute_part_two(groups: List[List[str]]) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=6)
 
-    path_file = os.path.join(config.path_data, "day_6", "custom_declaration_forms.txt")
+    path_file = os.path.join(config.path_data, "custom_declaration_forms.txt")
 
     # PART ONE
-    path_file_test = os.path.join(config.path_data, "day_6", "custom_declaration_forms_test.txt")
+    path_file_test = os.path.join(config.path_data, "custom_declaration_forms_test.txt")
     data_test = read_txt_file(path_file=path_file_test)
     data_test_group = split_group_data(data=data_test)
 

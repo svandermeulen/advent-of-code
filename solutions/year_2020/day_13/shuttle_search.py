@@ -80,18 +80,18 @@ def get_t(buslines: list) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=13)
 
     # PART ONE
 
     # Test
-    path_data_test = os.path.join(config.path_data, "day_13", "notes_test.txt")
+    path_data_test = os.path.join(config.path_data, "notes_test.txt")
     timestamp_test, buslines_test = parse_notes(path_file=path_data_test)
     minutes_to_wait, bus_earliest = get_earliest_bus(timestamp=timestamp_test, buslines=buslines_test)
     assert 295 == bus_earliest * minutes_to_wait
 
     # Real deal
-    path_data = os.path.join(config.path_data, "day_13", "notes.txt")
+    path_data = os.path.join(config.path_data, "notes.txt")
     timestamp, buslines = parse_notes(path_file=path_data)
     minutes_to_wait, bus_earliest = get_earliest_bus(timestamp=timestamp, buslines=buslines)
     print(

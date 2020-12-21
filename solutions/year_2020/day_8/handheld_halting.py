@@ -92,11 +92,11 @@ def fix_boot_code(boot_code: list) -> (bool, int, list):
 
 
 def main():
-    config = Config()
+    config = Config(day=8)
 
     # PART ONE
-    path_file_test = os.path.join(config.path_data, "day_8", "boot_code_test.txt")
-    path_file = os.path.join(config.path_data, "day_8", "boot_code.txt")
+    path_file_test = os.path.join(config.path_data, "boot_code_test.txt")
+    path_file = os.path.join(config.path_data, "boot_code.txt")
 
     # Test set
     data_test = read_txt_file(path_file=path_file_test)

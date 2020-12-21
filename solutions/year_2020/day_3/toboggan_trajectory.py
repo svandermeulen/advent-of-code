@@ -38,8 +38,8 @@ def count_encountered_trees(tree_data: list, slope: tuple) -> int:
 
 
 def main():
-    config = Config()
-    path_test_file = os.path.join(config.path_data, "day_3", "tree_map_test.txt")
+    config = Config(day=3)
+    path_test_file = os.path.join(config.path_data, "tree_map_test.txt")
 
     slope = (1, 3)
 

@@ -45,18 +45,18 @@ def detect_encryption_weakness(sequence: list, encoding_error: int) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=9)
 
     # PART ONE
 
     # Test
-    path_data = os.path.join(config.path_data, "day_9", "xmas_test.txt")
+    path_data = os.path.join(config.path_data, "xmas_test.txt")
     data_test = read_txt_file(path_file=path_data)
     data_test = [int(val) for val in data_test]
     encoding_error_test = detect_encoding_error(sequence=data_test, preamble=5)
     assert 127 == encoding_error_test
 
-    path_data = os.path.join(config.path_data, "day_9", "xmas.txt")
+    path_data = os.path.join(config.path_data, "xmas.txt")
     data = read_txt_file(path_file=path_data)
     data = [int(val) for val in data]
     encoding_error = detect_encoding_error(sequence=data, preamble=25)

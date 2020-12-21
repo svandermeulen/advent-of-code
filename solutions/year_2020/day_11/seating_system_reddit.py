@@ -53,12 +53,12 @@ def main():
     https://dev.to/qviper/advent-of-code-2020-python-solution-day-11-2lkj
     """
 
-    config = Config()
+    config = Config(day=11)
 
     # PART ONE
 
     # Test one
-    path_data = os.path.join(config.path_data, "day_11", "seating_system.txt")
+    path_data = os.path.join(config.path_data, "seating_system.txt")
 
     with open(path_data, "r") as fp:
         lines = [line.rstrip() for line in fp.readlines()]

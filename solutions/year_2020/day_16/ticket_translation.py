@@ -105,15 +105,15 @@ def get_field_order(notes: dict, tickets_nearby: list) -> list:
 
 
 def main():
-    config = Config()
+    config = Config(day=16)
 
     # Test
-    path_ticket_info = os.path.join(config.path_data, "day_16", "ticket_info_test.txt")
+    path_ticket_info = os.path.join(config.path_data, "ticket_info_test.txt")
     error_rate = compute_error_rate(path_ticket_info=path_ticket_info)
     assert 71 == error_rate
 
     # Real deal
-    path_ticket_info = os.path.join(config.path_data, "day_16", "ticket_info.txt")
+    path_ticket_info = os.path.join(config.path_data, "ticket_info.txt")
     error_rate = compute_error_rate(path_ticket_info=path_ticket_info)
     print(f"The ticket scanning error rate equals: {error_rate}")
     assert 24980 == error_rate
@@ -121,13 +121,13 @@ def main():
     # PART TWO
 
     # Test
-    path_ticket_info = os.path.join(config.path_data, "day_16", "ticket_info_test_two.txt")
+    path_ticket_info = os.path.join(config.path_data, "ticket_info_test_two.txt")
     notes, ticket_mine, tickets_nearby = parse_ticket_info(path_file=path_ticket_info)
     field_order = get_field_order(notes=notes, tickets_nearby=tickets_nearby)
     assert ["row", "class", "seat"] == field_order
 
     # Real deal
-    path_ticket_info = os.path.join(config.path_data, "day_16", "ticket_info.txt")
+    path_ticket_info = os.path.join(config.path_data, "ticket_info.txt")
     notes, ticket_mine, tickets_nearby = parse_ticket_info(path_file=path_ticket_info)
     field_order = get_field_order(notes=notes, tickets_nearby=tickets_nearby)
     fields_departure = [i for i, f in enumerate(field_order) if "departure" in f]

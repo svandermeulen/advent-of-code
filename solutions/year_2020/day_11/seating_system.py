@@ -146,15 +146,15 @@ def get_state_counts(seat_system: np.ndarray) -> dict:
 
 
 def main():
-    config = Config()
+    config = Config(day=11)
 
     # PART ONE
 
     # Test one
-    path_data = os.path.join(config.path_data, "day_11", "seating_system_test.txt")
+    path_data = os.path.join(config.path_data, "seating_system_test.txt")
     seat_system_test_one = parse_seat_system(path_file=path_data)
 
-    path_data = os.path.join(config.path_data, "day_11", "seating_system_test_exp.txt")
+    path_data = os.path.join(config.path_data, "seating_system_test_exp.txt")
     seat_system_exp = parse_seat_system(path_file=path_data)
     seat_system_new = fill_seats(seat_plan=seat_system_test_one)
     assert np.array_equal(seat_system_exp, seat_system_new)
@@ -162,7 +162,7 @@ def main():
     state_count = get_state_counts(seat_system=seat_system_new)
     assert state_count["#"] == 37
 
-    path_data = os.path.join(config.path_data, "day_11", "seating_system.txt")
+    path_data = os.path.join(config.path_data, "seating_system.txt")
     seat_system = parse_seat_system(path_file=path_data)
     # seat_system = fill_seats(seat_plan=seat_system)
     # state_count = get_state_counts(seat_system=seat_system)
@@ -171,17 +171,17 @@ def main():
     # assert state_count["#"] == 2275
 
     # Test get visible seats
-    path_data = os.path.join(config.path_data, "day_11", "seating_system_test_two.txt")
+    path_data = os.path.join(config.path_data, "seating_system_test_two.txt")
     seat_system_test_two = parse_seat_system(path_file=path_data)
     seats_occupied = get_visible_occupied_seats(seat_plan=seat_system_test_two, colidx=3, rowidx=4)
     assert seats_occupied == 8
 
-    path_data = os.path.join(config.path_data, "day_11", "seating_system_test_three.txt")
+    path_data = os.path.join(config.path_data, "seating_system_test_three.txt")
     seat_system_test_three = parse_seat_system(path_file=path_data)
     seats_occupied = get_visible_occupied_seats(seat_plan=seat_system_test_three, colidx=1, rowidx=1)
     assert seats_occupied == 0
 
-    path_data = os.path.join(config.path_data, "day_11", "seating_system_test_four.txt")
+    path_data = os.path.join(config.path_data, "seating_system_test_four.txt")
     seat_system_test_four = parse_seat_system(path_file=path_data)
     seats_occupied = get_visible_occupied_seats(seat_plan=seat_system_test_four, colidx=3, rowidx=3)
     assert seats_occupied == 0
@@ -191,9 +191,9 @@ def main():
     state_count = get_state_counts(seat_system=seat_system_new)
     assert state_count["#"] == 26
 
-    # Real deal
-    seat_system_new = fill_seats_two(seat_plan=seat_system)
-    state_count = get_state_counts(seat_system=seat_system_new)
+    # Real deal (Does not work)
+    # seat_system_new = fill_seats_two(seat_plan=seat_system)
+    # state_count = get_state_counts(seat_system=seat_system_new)
     print(f"The number of occupied seats equals: {state_count['#']}")
 
     return True

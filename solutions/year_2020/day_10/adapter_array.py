@@ -78,25 +78,25 @@ def get_adapter_arrangements(adapters: np.ndarray) -> int:
 
 
 def main():
-    config = Config()
+    config = Config(day=10)
 
     # PART ONE
 
     # Test one
-    path_data = os.path.join(config.path_data, "day_10", "adapter_list_test_one.txt")
+    path_data = os.path.join(config.path_data, "adapter_list_test_one.txt")
     data_test_one = read_adapter_data(path_file=path_data)
 
     result = compute_part_one(adapters=data_test_one)
     assert 35 == result
 
     # Test two
-    path_data = os.path.join(config.path_data, "day_10", "adapter_list_test_two.txt")
+    path_data = os.path.join(config.path_data, "adapter_list_test_two.txt")
     data_test_two = read_adapter_data(path_file=path_data)
 
     result = compute_part_one(adapters=data_test_two)
     assert 220 == result
 
-    path_data = os.path.join(config.path_data, "day_10", "adapter_list.txt")
+    path_data = os.path.join(config.path_data, "adapter_list.txt")
     data = read_adapter_data(path_file=path_data)
     result = compute_part_one(adapters=data)
     print(f"The number of 1 and 3 joltage differences multiplied equals: {result}")
