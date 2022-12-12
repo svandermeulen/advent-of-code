@@ -6,7 +6,7 @@ Date: 16/12/2020
 
 from collections import defaultdict
 
-from solutions.year_2020.utils.profiler import profile
+from solutions.utils import profile
 
 
 def take_turns(starting_number_list: list, turn_end: int) -> int:

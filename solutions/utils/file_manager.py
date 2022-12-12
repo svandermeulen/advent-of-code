@@ -5,8 +5,10 @@ Date: 07/12/2020
 """
 import os
 
+from typing import List
 
-def read_txt_file(path_file: str) -> list:
+
+def read_txt_file(path_file: str) -> List[str]:
 
     assert os.path.isfile(path_file), f"{path_file} does not exist"
 

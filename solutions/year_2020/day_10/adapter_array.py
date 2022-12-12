@@ -10,7 +10,7 @@ import os
 from math import prod
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils import read_txt_file
 
 
 COMBINATIONS = {

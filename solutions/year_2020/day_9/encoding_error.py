@@ -9,7 +9,7 @@ import os
 from itertools import combinations
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils.file_manager import read_txt_file
 
 
 def detect_encoding_error(sequence: list, preamble: int) -> int:

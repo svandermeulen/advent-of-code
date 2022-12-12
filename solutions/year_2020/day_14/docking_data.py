@@ -12,7 +12,7 @@ from copy import copy
 from typing import List
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils import read_txt_file
 
 
 def parse_program(path_program: str) -> (str, list):

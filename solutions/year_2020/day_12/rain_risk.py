@@ -4,11 +4,10 @@ Written by: sme30393
 Date: 14/12/2020
 """
 import doctest
-import math
 import os
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils import read_txt_file
 
 COMPASS = {
     0: "N",

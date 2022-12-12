@@ -5,13 +5,11 @@ Date: 11/12/2020
 """
 import numpy as np
 import os
-import scipy.ndimage as ndimage
 
 from collections import Counter
-from typing import List
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils import read_txt_file
 
 SEAT_TYPE = {
     ".": "floor",

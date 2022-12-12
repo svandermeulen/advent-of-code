@@ -9,7 +9,7 @@ import numpy as np
 import os
 
 from solutions.config import Config
-from solutions.year_2020.utils.file_manager import read_txt_file
+from solutions.utils import read_txt_file
 
 
 def parse_line(line: str) -> (str, int):
