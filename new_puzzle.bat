@@ -46,7 +46,7 @@ IF NOT EXIST %new_tests_dir% (
 		  ECHO ^)
 		  ECHO def test_run(test_input: Iterable[str], expected: int^) -^> None:
 		  ECHO     assert run(puzzle_input=test_input^) == expected
-		) >"%new_tests_dir%\test_day_%day%_part_%%A.py"
+		) >"%new_tests_dir%\test_year_%year%_day_%day%_part_%%A.py"
 	)
 ) ELSE (ECHO Tests folder tree for %new_tests_dir% has already been created.)
 
