@@ -1,0 +1,50 @@
+[tool.black]
+line-length = 120
+
+[tool.poetry]
+name = "advent_of_code"
+version = "0.1.0"
+description = ""
+authors = ["Meulen <stef.van.der.meulen@ordina.nl>"]
+readme = "README.md"
+packages = [
+    { include = "solutions", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ruff = "^0.1.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+mypy = "^1.7.1"
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "tests",
+]
+
+# Same as Black.
+line-length = 88
+target-version = "py311"

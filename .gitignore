@@ -1,7 +1,6 @@
-# FOLDERS TO IGNORE
-.idea/
-data/
-__pycache__/
-
 # FILES TO IGNORE
 *.pyc
+
+# FOLDERS TO IGNORE
+__pycache__/
+.idea/
