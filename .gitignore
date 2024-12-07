@@ -4,3 +4,4 @@
 # FOLDERS TO IGNORE
 __pycache__/
 .idea/
+.venv/
