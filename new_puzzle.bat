@@ -31,24 +31,24 @@ IF NOT EXIST %new_src_dir% (
 ::Add new tests
 IF NOT EXIST %new_tests_dir% (
 	MKDIR "%new_tests_dir%"
-	FOR %%A IN (1, 1, 2) DO (
-		(
-		  ECHO import pytest
-		  ECHO from typing_extensions import Iterable
-		  ECHO[
-		  ECHO from solutions.year_%year%.day_%day%.part_%%A import run
-		  ECHO from solutions.utils.io import read_lines
-		  ECHO from solutions.utils.paths import Paths
-		  ECHO[
-		  ECHO[
-		  ECHO @pytest.mark.parametrize(
-		  ECHO     "test_input, expected", [(read_lines(path=Paths(year=%year%, day=%day%^).path_data_tests / "example_%%A.txt"^), None^)]
-		  ECHO ^)
-		  ECHO def test_run(test_input: Iterable[str], expected: int^) -^> None:
-		  ECHO     assert run(puzzle_input=test_input^) == expected
-		) >"%new_tests_dir%\test_year_%year%_day_%day%_part_%%A.py"
-	)
 ) ELSE (ECHO Tests folder tree for %new_tests_dir% has already been created.)
+FOR %%A IN (1, 1, 2) DO (
+    (
+      ECHO import pytest
+      ECHO from typing_extensions import Iterable
+      ECHO[
+      ECHO from solutions.year_%year%.day_%day%.part_%%A import run
+      ECHO from solutions.utils.io import read_lines
+      ECHO from solutions.utils.paths import Paths
+      ECHO[
+      ECHO[
+      ECHO @pytest.mark.parametrize(
+      ECHO     "test_input, expected", [(read_lines(path=Paths(year=%year%, day=%day%^).path_data_tests / "example_%%A.txt"^), None^)]
+      ECHO ^)
+      ECHO def test_run(test_input: Iterable[str], expected: int^) -^> None:
+      ECHO     assert run(puzzle_input=test_input^) == expected
+    ) >"%new_tests_dir%\test_year_%year%_day_%day%_part_%%A.py"
+)
 
 ::Add puzzle example data
 IF NOT EXIST %new_data_tests_dir% (
