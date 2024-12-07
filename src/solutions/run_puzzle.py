@@ -10,4 +10,4 @@ def run_puzzle(year: int, day: int, part_nr: int) -> None:
 
 
 if __name__ == "__main__":
-    print(run_puzzle(year=2024, day=1, part_nr=2))
+    print(run_puzzle(year=2024, day=2, part_nr=2))
